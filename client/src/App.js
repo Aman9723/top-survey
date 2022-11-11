@@ -3,7 +3,7 @@ import './App.css';
 import Login from './Components/Login';
 import SignupEmail from './Components/SignupEmail';
 import SignupPassword from './Components/SignupPassword';
-import Dashboard  from "./Pages/Dashboard"
+import Dashboard from './Pages/Dashboard';
 import RequireEmail from './Hoc/RequireEmail';
 
 function App() {
@@ -11,9 +11,6 @@ function App() {
         <div className="App">
             <Routes>
                 <Route path="/signup/email" element={<SignupEmail />} />
-
-                <Route path="/signup/password" element={<SignupPassword />} />
-               
                 <Route
                     path="/signup/password"
                     element={
@@ -24,7 +21,7 @@ function App() {
                 />
                 <Route path="/login" element={<Login />} />
             </Routes>
-             {/* <Dashboard/> */}
+            {/* <Dashboard/> */}
         </div>
     );
 }

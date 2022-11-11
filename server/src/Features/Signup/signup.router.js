@@ -1,7 +1,13 @@
 const express = require('express');
 const Users = require('./signup.model');
+const bcrypt = require('bcrypt');
 
 const app = express.Router();
+
+// password hashing
+const securePassword = async (password) => {
+    return await bcrypt.hash(password, 10);
+};
 
 app.get('/email/:email', async (req, res) => {
     const { email } = req.params;
@@ -20,7 +26,10 @@ app.post('/password', async (req, res) => {
         let user = await Users.findOne({ email: data.email });
         if (user) res.send('Email already exists.');
         else {
-            let newUser = await Users.create(data);
+            await Users.create({
+                ...data,
+                password: await securePassword(data.password),
+            });
             res.send('account created');
         }
     } catch (e) {
