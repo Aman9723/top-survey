@@ -18,6 +18,6 @@ app.use('/survey', surveyRoute);
 app.use('/signup', signupRoute);
 
 app.listen(PORT, async () => {
-    await connect();
+    connect();
     console.log(`Listening at http://localhost:${PORT}`);
 });
