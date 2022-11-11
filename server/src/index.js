@@ -6,7 +6,7 @@ const questionRoute = require("./Features/Question/question.router");
 const surveyRoute = require("./Features/Survey/survey.router");
 const signupRoute = require("./Features/Signup/signup.router");
 
-const connect = require("./config/db");
+const connect = require("./Config/db");
 
 const PORT = process.env.PORT;
 const app = express();
