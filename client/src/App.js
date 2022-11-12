@@ -3,9 +3,11 @@ import './App.css';
 import Login from './Components/Login';
 import SignupEmail from './Components/SignupEmail';
 import SignupPassword from './Components/SignupPassword';
-// import Dashboard  from "./Pages/Dashboard"
+import Dashboard from './Pages/Dashboard';
 import RequireEmail from './Hoc/RequireEmail';
-import CreateSurvey from "./Components/CreateSurvey";
+import CreateSurvey from './Components/CreateSurvey';
+import ForgotEmail from './Components/ForgotEmail';
+import ForgotPassword from './Components/ForgotPassword';
 
 function App() {
     return (
@@ -21,9 +23,14 @@ function App() {
                     }
                 />
                 <Route path="/login" element={<Login />} />
+                <Route path="/forgot/sendOtp" element={<ForgotEmail />} />
+                <Route
+                    path="/forgot/changePassword"
+                    element={<ForgotPassword />}
+                />
             </Routes>
             {/* <Dashboard/> */}
-            <CreateSurvey />
+            {/* <CreateSurvey /> */}
         </div>
     );
 }

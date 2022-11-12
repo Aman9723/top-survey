@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema(
         newsLetter: { type: Boolean },
     },
     {
-        versionKey: '',
+        versionKey: false,
         timestamps: false,
     }
 );
