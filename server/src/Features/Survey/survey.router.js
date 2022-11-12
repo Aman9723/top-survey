@@ -3,8 +3,9 @@ const Survey = require("./survey.model");
 
 const app = express.Router();
 
-app.get("/", (req, res) => {
-	res.send("users");
+app.get("/", async (req, res) => {
+	let survey = await Survey.find();
+	res.send(survey);
 });
 
 app.get("/:id", async (req, res) => {
