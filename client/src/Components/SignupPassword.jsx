@@ -109,13 +109,12 @@ const SignupPassword = () => {
                                 onChange={handleChange}
                                 fontSize={'15px'}
                                 focusBorderColor="#00bf6f"
-                                errorBorderColor="red.400"
+                                errorBorderColor="#f05b24"
                                 borderRadius={'2px'}
-                                color={!isPasswordValid ? 'red.400' : null}
+                                color={!isPasswordValid ? '#f05b24' : null}
                                 borderColor="lightgray"
                                 name="password"
                             />
-
                             <FormHelperText
                                 color={'rgb(107, 120, 127)'}
                                 fontSize="13px"
@@ -141,13 +140,13 @@ const SignupPassword = () => {
                                 onChange={handleChange}
                                 fontSize={'15px'}
                                 focusBorderColor="#00bf6f"
-                                errorBorderColor="red.400"
+                                errorBorderColor="#f05b24"
                                 borderRadius={'2px'}
                                 name="confirmPassword"
                                 color={
                                     password !== confirmPassword &&
                                     confirmPassword !== ''
-                                        ? 'red.400'
+                                        ? '#f05b24'
                                         : null
                                 }
                                 borderColor="lightgray"
@@ -156,7 +155,7 @@ const SignupPassword = () => {
                             {password !== confirmPassword &&
                             confirmPassword !== '' ? (
                                 <FormHelperText
-                                    color={'red.400'}
+                                    color={'#f05b24'}
                                     fontSize="13px"
                                 >
                                     Passwords do not match
@@ -165,6 +164,7 @@ const SignupPassword = () => {
                         </Box>
                         <Button
                             isLoading={isLoading}
+                            fontSize={'15px'}
                             bg="#00bf6f"
                             isDisabled={
                                 password !== confirmPassword || !isPasswordValid

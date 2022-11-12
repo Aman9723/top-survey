@@ -5,8 +5,9 @@ const cors = require('cors');
 const questionRoute = require('./Features/Question/question.router');
 const surveyRoute = require('./Features/Survey/survey.router');
 const signupRoute = require('./Features/Signup/signup.router');
+const loginRoute = require('./Features/Login/login.router');
 
-const connect = require('./config/db');
+const connect = require('./Config/db');
 
 const PORT = process.env.PORT;
 const app = express();
@@ -16,8 +17,9 @@ app.use(cors());
 app.use('/survey/question', questionRoute);
 app.use('/survey', surveyRoute);
 app.use('/signup', signupRoute);
+app.use('/login', loginRoute);
 
 app.listen(PORT, async () => {
-    await connect();
+    connect();
     console.log(`Listening at http://localhost:${PORT}`);
 });

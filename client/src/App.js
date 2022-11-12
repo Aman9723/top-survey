@@ -5,15 +5,13 @@ import SignupEmail from './Components/SignupEmail';
 import SignupPassword from './Components/SignupPassword';
 // import Dashboard  from "./Pages/Dashboard"
 import RequireEmail from './Hoc/RequireEmail';
+import CreateSurvey from "./Components/CreateSurvey";
 
 function App() {
     return (
         <div className="App">
             <Routes>
                 <Route path="/signup/email" element={<SignupEmail />} />
-
-                <Route path="/signup/password" element={<SignupPassword />} />
-               
                 <Route
                     path="/signup/password"
                     element={
@@ -24,7 +22,8 @@ function App() {
                 />
                 <Route path="/login" element={<Login />} />
             </Routes>
-             {/* <Dashboard/> */}
+            {/* <Dashboard/> */}
+            <CreateSurvey />
         </div>
     );
 }
