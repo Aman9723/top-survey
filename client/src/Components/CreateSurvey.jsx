@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addSurvey } from "../Redux/Survey/survey.actions";
 import CreateQuestion from "./CreateQuestion";
+import Navbar2 from "./Navbar2/Navbar2";
 const CreateSurvey = () => {
 	const dispatch = useDispatch();
 
@@ -31,45 +32,52 @@ const CreateSurvey = () => {
 		dispatch(addSurvey({ ...data }));
 	};
 	return (
-		<Box p={5}>
-			<FormLabel>
-				Survey Title
-				<Input
-					type={"text"}
-					name={"surveyTitle"}
-					value={surveyTitle}
-					onChange={(e) => setSurveyTitle(e.target.value)}
-				/>
-			</FormLabel>
-			<FormLabel>
-				Number of Questions
-				<Input
-					type={"number"}
-					name={"numberofQuestion"}
-					value={numberofQuestion}
-					onChange={(e) => setnumberofQuestion(e.target.value)}
-				/>
-			</FormLabel>
-			<Flex gap={5} flexDirection="column" mb={5}>
-				{questions?.map((ele, i) => {
-					return (
-						<CreateQuestion key={i} id={i + 1} setQuestions={handleQuestions} />
-					);
-				})}
-			</Flex>
-			<Flex justifyContent={"center"}>
-				<Button
-					onClick={() => {
-						handleSubmit();
-					}}
-					variant={"solid"}
-					colorScheme="whatsapp"
-					w="full"
-				>
-					Add Survey
-				</Button>
-			</Flex>
-		</Box>
+		<div>
+			<Navbar2 />
+			<Box p={5}>
+				<FormLabel>
+					Survey Title
+					<Input
+						type={"text"}
+						name={"surveyTitle"}
+						value={surveyTitle}
+						onChange={(e) => setSurveyTitle(e.target.value)}
+					/>
+				</FormLabel>
+				<FormLabel>
+					Number of Questions
+					<Input
+						type={"number"}
+						name={"numberofQuestion"}
+						value={numberofQuestion}
+						onChange={(e) => setnumberofQuestion(e.target.value)}
+					/>
+				</FormLabel>
+				<Flex gap={5} flexDirection="column" mb={5}>
+					{questions?.map((ele, i) => {
+						return (
+							<CreateQuestion
+								key={i}
+								id={i + 1}
+								setQuestions={handleQuestions}
+							/>
+						);
+					})}
+				</Flex>
+				<Flex justifyContent={"center"}>
+					<Button
+						onClick={() => {
+							handleSubmit();
+						}}
+						variant={"solid"}
+						colorScheme="whatsapp"
+						w="full"
+					>
+						Add Survey
+					</Button>
+				</Flex>
+			</Box>
+		</div>
 	);
 };
 
