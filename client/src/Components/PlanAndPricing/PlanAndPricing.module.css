@@ -1,0 +1,45 @@
+.MinNavBar1{
+    display:flex;
+    width: 40%;
+    /* border: 1px solid black; */
+    margin: auto;
+    justify-content: space-around;
+}
+
+.MinNavBar{
+    font-weight: bold;
+    color: #2f3336;
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+.MinNavBar:hover{
+    color: #00bf6f;
+    border-bottom: 2px solid #00bf6f ;
+}
+
+.MinNavBar2{
+    display:flex;
+    width: 80%;
+    /* border: 1px solid black; */
+    margin: auto;
+    justify-content: space-around;
+}
+.insideMinNavbar2{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.Selectbtn{
+    display:block;
+    border-radius: 5px;
+     width:80%;
+     margin:auto;
+     border: none;
+       padding:5px;
+       color:white;
+}
+.headings{
+    color: #333E48;
+    font-size: 21px;
+    font-weight: 500;
+    /* padding: 32px 0 0; */
+    text-align: center;
+}

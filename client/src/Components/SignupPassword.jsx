@@ -1,4 +1,6 @@
 import {
+    Alert,
+    AlertIcon,
     Box,
     Button,
     Flex,
@@ -10,32 +12,56 @@ import {
     Link,
     Text,
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React from 'react';
 import FormFooter from './FormFooter';
 import { IoIosArrowBack } from 'react-icons/io';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+    confirmSignupPassword,
+    createAccount,
+    signupPassword,
+} from '../Redux/Signup/signup.actions';
+import { Navigate } from 'react-router-dom';
+import { IS_NOT_SUCCESS } from '../Redux/Signup/signup.types';
 
 const SignupPassword = () => {
-    const [email, setEmail] = useState('');
+    const {
+        email,
+        password,
+        confirmPassword,
+        isPasswordValid,
+        isLoading,
+        isError,
+        isSuccess,
+        terms,
+        errorMessage,
+        newsLetter,
+    } = useSelector((store) => store.signup);
+    const dispatch = useDispatch();
 
-    // handles email
-    const handleChange = (e) => {
-        setEmail(e.target.value);
+    const handleChange = ({ target }) => {
+        if (target.name === 'password') dispatch(signupPassword(target.value));
+        else dispatch(confirmSignupPassword(target.value));
     };
 
-    // validation for email
-    const isError = !String(email)
-        .toLowerCase()
-        .match(
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        );
+    // onclicking create account button, add user data to db
+    const handleCreateAccount = () => {
+        dispatch(createAccount({ email, password, terms, newsLetter }));
+    };
 
-    // OnClicking next check if the email is present in database:
-    // show loading
-    // if present -> show theres already an account with email
-    // else -> take the user to set password
+    if (isSuccess) {
+        dispatch({ type: IS_NOT_SUCCESS });
+        return <Navigate to="/login" />;
+    }
 
     return (
         <>
+            {isError ? (
+                <Alert status="error">
+                    <AlertIcon />
+                    {errorMessage}
+                </Alert>
+            ) : null}
             <Box bg="#f7f8fa">
                 <Flex w={{ base: '100%', sm: '440px' }} margin={'auto'}>
                     <Image src="/topSurveyLogo.png" boxSize={'130px'} />
@@ -69,38 +95,85 @@ const SignupPassword = () => {
                         <Text fontSize={'34px'} color={'#333e48'}>
                             Create Password
                         </Text>
-                        Email
+                        <Text fontSize={'15px'}>{email}</Text>
                         <Box>
                             <FormLabel fontSize={'13px'}>
                                 Enter a Password
                             </FormLabel>
                             <Input
-                                isInvalid={isError && email !== ''}
+                                isInvalid={!isPasswordValid && password !== ''}
                                 _hover={{ borderColor: 'black' }}
-                                type="email"
+                                type="password"
                                 size={'lg'}
-                                value={email}
+                                value={password}
                                 onChange={handleChange}
                                 fontSize={'15px'}
                                 focusBorderColor="#00bf6f"
-                                errorBorderColor="red.400"
+                                errorBorderColor="#f05b24"
                                 borderRadius={'2px'}
-                                color={isError ? 'red.400' : null}
+                                color={!isPasswordValid ? '#f05b24' : null}
+                                borderColor="lightgray"
+                                name="password"
+                            />
+                            <FormHelperText
+                                color={'rgb(107, 120, 127)'}
+                                fontSize="13px"
+                            >
+                                Enter at least 8 characters. Don’t use common
+                                words, names, or sequential or repeated
+                                characters.
+                            </FormHelperText>
+                        </Box>
+                        <Box>
+                            <FormLabel fontSize={'13px'}>
+                                Confirm Password
+                            </FormLabel>
+                            <Input
+                                isInvalid={
+                                    !isPasswordValid && confirmPassword !== ''
+                                }
+                                isDisabled={!isPasswordValid}
+                                _hover={{ borderColor: 'black' }}
+                                type="password"
+                                size={'lg'}
+                                value={confirmPassword}
+                                onChange={handleChange}
+                                fontSize={'15px'}
+                                focusBorderColor="#00bf6f"
+                                errorBorderColor="#f05b24"
+                                borderRadius={'2px'}
+                                name="confirmPassword"
+                                color={
+                                    password !== confirmPassword &&
+                                    confirmPassword !== ''
+                                        ? '#f05b24'
+                                        : null
+                                }
                                 borderColor="lightgray"
                             />
-                            {isError && email !== '' ? (
-                                <FormHelperText color={'red.400'}>
-                                    Enter a valid email address
+
+                            {password !== confirmPassword &&
+                            confirmPassword !== '' ? (
+                                <FormHelperText
+                                    color={'#f05b24'}
+                                    fontSize="13px"
+                                >
+                                    Passwords do not match
                                 </FormHelperText>
                             ) : null}
                         </Box>
                         <Button
+                            isLoading={isLoading}
+                            fontSize={'15px'}
                             bg="#00bf6f"
-                            isDisabled={isError}
+                            isDisabled={
+                                password !== confirmPassword || !isPasswordValid
+                            }
                             size="lg"
                             _hover={{ bg: '00bf6f' }}
                             borderRadius={'2px'}
                             color="white"
+                            onClick={handleCreateAccount}
                         >
                             Create Account
                         </Button>

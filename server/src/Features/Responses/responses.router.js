@@ -1,21 +1,20 @@
 const express = require("express");
-const Survey = require("./survey.model");
+const Responses = require("./response.model");
 
 const app = express.Router();
 
-app.get("/", async (req, res) => {
-	let survey = await Survey.find();
-	res.send(survey);
+app.get("/", (req, res) => {
+	res.send("users");
 });
 
 app.get("/:id", async (req, res) => {
 	let id = req.params.id;
 	try {
-		let survey = await Survey.findById(id);
-		if (survey) {
-			res.send(survey);
+		let response = await Responses.findById(id);
+		if (response) {
+			res.send(response);
 		} else {
-			res.status(404).send("survey not found");
+			res.status(404).send("response not found");
 		}
 	} catch (e) {
 		res.status(404).send(e.message);
@@ -24,8 +23,8 @@ app.get("/:id", async (req, res) => {
 
 app.post("/", async (req, res) => {
 	try {
-		let survey = await Survey.create({ ...req.body });
-		res.status(200).send(survey);
+		let response = await Responses.create({ ...req.body });
+		res.status(200).send(response);
 	} catch (err) {
 		res.status(404).send(err.message);
 	}
@@ -34,11 +33,11 @@ app.post("/", async (req, res) => {
 app.delete("/:id", async (req, res) => {
 	let id = req.params.id;
 	try {
-		let survey = await Survey.findByIdAndDelete(id);
-		if (survey) {
-			res.send("survey delete successfully");
+		let response = await Responses.findByIdAndDelete(id);
+		if (response) {
+			res.send("response delete successfully");
 		} else {
-			res.status(404).send("survey not found");
+			res.status(404).send("response not found");
 		}
 	} catch (e) {
 		res.status(404).send(e.message);
@@ -48,12 +47,12 @@ app.delete("/:id", async (req, res) => {
 app.patch("/:id", async (req, res) => {
 	let id = req.params.id;
 	try {
-		let survey = await Survey.findByIdAndUpdate(
+		let response = await Responses.findByIdAndUpdate(
 			id,
 			{ ...req.body },
 			{ new: true }
 		);
-		res.send(survey);
+		res.send(response);
 	} catch (e) {
 		res.status(404).send(e.message);
 	}

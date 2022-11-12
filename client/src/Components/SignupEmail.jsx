@@ -1,4 +1,6 @@
 import {
+    Alert,
+    AlertIcon,
     Box,
     Button,
     Checkbox,
@@ -11,38 +13,64 @@ import {
     Link,
     Text,
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React from 'react';
+import {
+    checkEmail,
+    signupEmail,
+    signupNewsLetter,
+    signupTerms,
+} from '../Redux/Signup/signup.actions';
 import FormFooter from './FormFooter';
 import LogoBox from './LogoBox';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import { IS_NOT_SUCCESS } from '../Redux/Signup/signup.types';
 
 const SignupEmail = () => {
-    const [email, setEmail] = useState('');
-    const [terms, setTerms] = useState(false);
+    const {
+        email,
+        terms,
+        newsLetter,
+        isEmailValid,
+        isLoading,
+        isError,
+        isSuccess,
+        errorMessage,
+    } = useSelector((store) => store.signup);
+    const dispatch = useDispatch();
 
     // handles email
-    const handleChange = (e) => {
-        setEmail(e.target.value);
+    const handleChange = ({ target }) => {
+        dispatch(signupEmail(target.value));
     };
 
-    // handles terms aggreement
-    const handleCheck = (e) => {
-        setTerms(e.target.checked);
+    // handles terms & newsLetter
+    const handleCheck = ({ target }) => {
+        if (target.name === 'terms') dispatch(signupTerms(target.checked));
+        else dispatch(signupNewsLetter(target.checked));
     };
 
-    // validation for email
-    const isError = !String(email)
-        .toLowerCase()
-        .match(
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        );
-
-    // OnClicking next check if the email is present in database:
     // show loading
     // if present -> show theres already an account with email
     // else -> take the user to set password
 
+    const handleNext = (e) => {
+        dispatch(checkEmail(email));
+    };
+
+    if (isSuccess) {
+        dispatch({ type: IS_NOT_SUCCESS });
+        return <Navigate to="/signup/password" />;
+    }
+
     return (
         <>
+            {isError ? (
+                <Alert status="error">
+                    <AlertIcon />
+                    {errorMessage}
+                </Alert>
+            ) : null}
             <Box bg="#f7f8fa">
                 <Flex w={{ base: '100%', sm: '440px' }} margin={'auto'}>
                     <Image src="/topSurveyLogo.png" boxSize={'130px'} />
@@ -65,7 +93,7 @@ const SignupEmail = () => {
                     >
                         <Text textAlign={'right'} fontSize={'15px'}>
                             Already have an account?{' '}
-                            <Link href="/login/email" color={'#007faa'}>
+                            <Link href="/login" color={'#007faa'}>
                                 Log in
                             </Link>
                         </Text>
@@ -77,7 +105,7 @@ const SignupEmail = () => {
                                 Email address
                             </FormLabel>
                             <Input
-                                isInvalid={isError && email !== ''}
+                                isInvalid={!isEmailValid && email !== ''}
                                 _hover={{ borderColor: 'black' }}
                                 type="email"
                                 size={'lg'}
@@ -85,13 +113,16 @@ const SignupEmail = () => {
                                 onChange={handleChange}
                                 fontSize={'15px'}
                                 focusBorderColor="#00bf6f"
-                                errorBorderColor="red.400"
+                                errorBorderColor="#f05b24"
                                 borderRadius={'2px'}
-                                color={isError ? 'red.400' : null}
+                                color={!isEmailValid ? '#f05b24' : null}
                                 borderColor="lightgray"
                             />
-                            {isError && email !== '' ? (
-                                <FormHelperText color={'red.400'}>
+                            {!isEmailValid && email !== '' ? (
+                                <FormHelperText
+                                    color={'#f05b24'}
+                                    fontSize={'13px'}
+                                >
                                     Enter a valid email address
                                 </FormHelperText>
                             ) : null}
@@ -100,6 +131,8 @@ const SignupEmail = () => {
                             size={'lg'}
                             colorScheme="green"
                             onChange={handleCheck}
+                            name="terms"
+                            defaultChecked={terms}
                         >
                             <Text fontSize={'12px'} color="#6b787f">
                                 You agree to the{' '}
@@ -107,7 +140,13 @@ const SignupEmail = () => {
                                 <Link color={'#005977'}>Privacy Notice.</Link>
                             </Text>
                         </Checkbox>
-                        <Checkbox size={'lg'} colorScheme="green">
+                        <Checkbox
+                            size={'lg'}
+                            colorScheme="green"
+                            onChange={handleCheck}
+                            name="newsLetter"
+                            defaultChecked={newsLetter}
+                        >
                             <Text fontSize={'12px'} color="#6b787f">
                                 You agree to receive product news and special
                                 promotions via email. You can opt-out of these
@@ -115,12 +154,15 @@ const SignupEmail = () => {
                             </Text>
                         </Checkbox>
                         <Button
+                            isLoading={isLoading}
                             bg="#00bf6f"
-                            isDisabled={isError || !terms}
+                            isDisabled={!isEmailValid || !terms}
                             size="lg"
                             _hover={{ bg: '00bf6f' }}
                             borderRadius={'2px'}
                             color="white"
+                            onClick={handleNext}
+                            fontSize={'15px'}
                         >
                             Next
                         </Button>
