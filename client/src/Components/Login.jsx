@@ -47,7 +47,7 @@ const Login = () => {
     if (token) {
         return <Navigate to="/dashboard" />;
     }
-    
+
     return (
         <>
             {error ? (
@@ -129,7 +129,9 @@ const Login = () => {
                                 name="password"
                             />
                             <FormHelperText fontSize={'15px'} color="#005977">
-                                <Link>Forgot password?</Link>
+                                <Link href="/forgot/sendOtp">
+                                    Forgot password?
+                                </Link>
                             </FormHelperText>
                         </Box>
                         <Button

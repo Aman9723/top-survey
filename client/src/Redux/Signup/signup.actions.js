@@ -38,7 +38,7 @@ const checkEmail = (email) => async (dispatch) => {
             `http://localhost:8080/signup/email/${email}`
         );
         res = res.data;
-        if (res == 'unique') dispatch({ type: IS_SUCCESS });
+        if (res === 'unique') dispatch({ type: IS_SUCCESS });
         else dispatch({ type: IS_ERROR, payload: res });
     } catch (e) {
         dispatch({ type: IS_ERROR, payload: e.message });

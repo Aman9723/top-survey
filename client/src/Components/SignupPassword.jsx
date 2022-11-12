@@ -10,7 +10,9 @@ import {
     Image,
     Input,
     Link,
+    position,
     Text,
+    useToast,
 } from '@chakra-ui/react';
 import React from 'react';
 import FormFooter from './FormFooter';
@@ -38,6 +40,7 @@ const SignupPassword = () => {
         newsLetter,
     } = useSelector((store) => store.signup);
     const dispatch = useDispatch();
+    const toast = useToast();
 
     const handleChange = ({ target }) => {
         if (target.name === 'password') dispatch(signupPassword(target.value));
@@ -51,6 +54,14 @@ const SignupPassword = () => {
 
     if (isSuccess) {
         dispatch({ type: IS_NOT_SUCCESS });
+        toast({
+            title: 'Account created 🎉',
+            position: 'top',
+            isClosable: true,
+            status: 'success',
+            color: '00bf6f',
+            variant: 'left-accent',
+        });
         return <Navigate to="/login" />;
     }
 
