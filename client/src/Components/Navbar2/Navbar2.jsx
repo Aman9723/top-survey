@@ -19,13 +19,18 @@ import React from "react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import styles from "./Navbar2.module.css";
 import logo from "../Images/logo.jpg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../Redux/Login/login.actions";
+import { FiHelpCircle, FiGrid } from "react-icons/fi";
 
 const Navbar2 = () => {
-	function handleSignout() {}
+	const dispatch = useDispatch();
+	function handleSignout() {
+		dispatch(logout());
+	}
 	const { token } = useSelector((store) => store.login);
 	const array = token.split("_");
-	console.log(token, array);
+
 	return (
 		<div>
 			<Box className={styles.Navbar2box}>
@@ -39,9 +44,11 @@ const Navbar2 = () => {
 					<Button colorScheme={"whatsapp"} variant="link">
 						My surveys
 					</Button>
-					<Button colorScheme={"whatsapp"} variant="link">
-						All surveys
-					</Button>
+					<Link href="/allsurvey">
+						<Button colorScheme={"whatsapp"} variant="link">
+							All surveys
+						</Button>
+					</Link>
 					<Button colorScheme={"whatsapp"} variant="link">
 						Plans & pricing
 					</Button>
@@ -63,7 +70,7 @@ const Navbar2 = () => {
 								as={Button}
 								rightIcon={<ChevronDownIcon />}
 							>
-								{}
+								{array[1]}
 							</MenuButton>
 							<MenuList
 								background={"whiteAlpha.100"}
@@ -112,10 +119,7 @@ function Grid() {
 				onClick={onOpen}
 			>
 				<Link>
-					<Image
-						height={"25px"}
-						src="https://cdn.smassets.net/assets/dashweb/smlib.globaltemplates/13.0.0/assets/ProductsIcon.svg"
-					></Image>
+					<FiGrid />
 				</Link>
 			</Button>
 			<Drawer
@@ -211,10 +215,7 @@ function Help() {
 				onClick={onOpen}
 			>
 				<Link>
-					<Image
-						height={"25px"}
-						src="https://cdn.smassets.net/assets/dashweb/smlib.globaltemplates/13.0.0/assets/HelpIcon.svg"
-					></Image>
+					<FiHelpCircle />
 				</Link>
 			</Button>
 			<Drawer
