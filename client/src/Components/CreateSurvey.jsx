@@ -1,23 +1,9 @@
-import {
-	Box,
-	Button,
-	Flex,
-	FormLabel,
-	Heading,
-	Input,
-	Select,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, FormLabel, Input } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-	addSurvey,
-	deleteSurvey,
-	getSurvey,
-	updateSurvey,
-} from "../Redux/Survey/survey.actions";
+import { useDispatch } from "react-redux";
+import { addSurvey } from "../Redux/Survey/survey.actions";
 import CreateQuestion from "./CreateQuestion";
 const CreateSurvey = () => {
-	const survey = useSelector((store) => store.survey.survey);
 	const dispatch = useDispatch();
 
 	const [surveyTitle, setSurveyTitle] = useState("");
