@@ -113,13 +113,16 @@ const SignupEmail = () => {
                                 onChange={handleChange}
                                 fontSize={'15px'}
                                 focusBorderColor="#00bf6f"
-                                errorBorderColor="red.400"
+                                errorBorderColor="#f05b24"
                                 borderRadius={'2px'}
-                                color={!isEmailValid ? 'red.400' : null}
+                                color={!isEmailValid ? '#f05b24' : null}
                                 borderColor="lightgray"
                             />
                             {!isEmailValid && email !== '' ? (
-                                <FormHelperText color={'red.400'}>
+                                <FormHelperText
+                                    color={'#f05b24'}
+                                    fontSize={'13px'}
+                                >
                                     Enter a valid email address
                                 </FormHelperText>
                             ) : null}
@@ -159,6 +162,7 @@ const SignupEmail = () => {
                             borderRadius={'2px'}
                             color="white"
                             onClick={handleNext}
+                            fontSize={'15px'}
                         >
                             Next
                         </Button>

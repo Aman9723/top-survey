@@ -5,15 +5,17 @@ import SignupEmail from './Components/SignupEmail';
 import SignupPassword from './Components/SignupPassword';
 // import Dashboard  from "./Pages/Dashboard"
 import RequireEmail from './Hoc/RequireEmail';
+<<<<<<< HEAD
 import Navbar2 from "./Components/Navbar2/Navbar2"
+=======
+import CreateSurvey from "./Components/CreateSurvey";
+
+>>>>>>> 3ca6b25176317b9d4f04038b3a9f59e61baef6e8
 function App() {
     return (
         <div className="App">
-            {/* <Routes>
+             <Routes>
                 <Route path="/signup/email" element={<SignupEmail />} />
-
-                <Route path="/signup/password" element={<SignupPassword />} />
-               
                 <Route
                     path="/signup/password"
                     element={
@@ -23,9 +25,15 @@ function App() {
                     }
                 />
                 <Route path="/login" element={<Login />} />
-            </Routes> */}
+<<<<<<< HEAD
+            </Routes> 
              {/* <Dashboard/> */}
-             <Navbar2/>
+             {/* <Navbar2/> */}
+=======
+            </Routes>
+            {/* <Dashboard/> */}
+            {/* <CreateSurvey /> */}
+>>>>>>> 3ca6b25176317b9d4f04038b3a9f59e61baef6e8
         </div>
     );
 }
