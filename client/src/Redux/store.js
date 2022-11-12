@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-// import { legacy_createStore } from 'redux';
 
-// const store = legacy_createStore();
-=======
 
 import { legacy_createStore, combineReducers, applyMiddleware } from 'redux';
 import signupReducer from './Signup/signup.reducer';
@@ -17,6 +13,6 @@ const rootReducer = combineReducers({
 });
 
 const store = legacy_createStore(rootReducer, applyMiddleware(thunk));
->>>>>>> 1607eb8460db0dc14ce9390839a5ceee80d408eb
 
-// export default store;
+
+export default store;
