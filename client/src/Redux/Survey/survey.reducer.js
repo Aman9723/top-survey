@@ -3,6 +3,7 @@ import {
 	DELETE_SURVEY,
 	UPDATE_SURVEY,
 	GET_SURVEY,
+	GET_SURVEY_BY_ID,
 } from "./survey.types";
 
 const initState = {
@@ -30,6 +31,9 @@ export const surveyReducer = (state = initState, { type, payload }) => {
 			return { ...state, survey: updatedSurvey };
 		}
 		case GET_SURVEY: {
+			return { ...state, survey: payload };
+		}
+		case GET_SURVEY_BY_ID: {
 			return { ...state, survey: payload };
 		}
 		default: {

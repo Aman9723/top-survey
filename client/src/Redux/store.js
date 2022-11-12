@@ -14,4 +14,5 @@ const rootReducer = combineReducers({
 
 const store = legacy_createStore(rootReducer, applyMiddleware(thunk));
 
+
 export default store;

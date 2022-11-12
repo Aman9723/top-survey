@@ -3,6 +3,7 @@ import {
 	DELETE_SURVEY,
 	UPDATE_SURVEY,
 	GET_SURVEY,
+	GET_SURVEY_BY_ID,
 } from "./survey.types";
 import axios from "axios";
 
@@ -11,6 +12,14 @@ export const getSurvey = () => async (dispatch) => {
 	let data = await res.data;
 	dispatch({ type: GET_SURVEY, payload: data });
 };
+
+export const getSurveybyId =
+	({ id }) =>
+	async (dispatch) => {
+		let res = await axios.get(`${process.env.REACT_APP_FETCH_URL}survey/${id}`);
+		let data = await res.data;
+		dispatch({ type: GET_SURVEY_BY_ID, payload: data });
+	};
 
 export const addSurvey = (payload) => async (dispatch) => {
 	dispatch({ type: ADD_SURVEY });
