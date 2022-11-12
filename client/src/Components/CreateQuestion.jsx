@@ -55,9 +55,20 @@ const CreateQuestion = ({ id, setQuestions }) => {
 		setQuestions(e, id - 1, data);
 	};
 	return (
-		<Box p={[5, 10]} borderWidth={1} borderRadius={10}>
+		<Box
+			p={[5, 10]}
+			borderWidth={1}
+			borderRadius={10}
+			bgColor={"#F7F7F7"}
+			borderColor={"black"}
+		>
 			<form onSubmit={handleSubmit} key={id}>
-				<Flex gap={5} flexDirection={["column", "row"]} alignItems="center">
+				<Flex
+					gap={5}
+					flexDirection={["column", "row"]}
+					alignItems="center"
+					mb={4}
+				>
 					<Flex alignItems="center" gap={5} w="full">
 						<Heading as={"h4"} size={"sm"}>
 							Q{id}
@@ -66,6 +77,7 @@ const CreateQuestion = ({ id, setQuestions }) => {
 							type={"text"}
 							placeholder="Enter your question"
 							value={question}
+							borderColor={"black"}
 							onChange={(e) => setQuestion(e.target.value)}
 						/>
 					</Flex>
@@ -73,6 +85,7 @@ const CreateQuestion = ({ id, setQuestions }) => {
 						placeholder="Select type"
 						value={optionType}
 						name={"optionType"}
+						borderColor={"black"}
 						onChange={(e) => setOptionType(e.target.value)}
 					>
 						<option value="Checkbox">Checkbox</option>
@@ -80,7 +93,7 @@ const CreateQuestion = ({ id, setQuestions }) => {
 						<option value="Single Textbox">Single Textbox</option>
 					</Select>
 				</Flex>
-				<Divider colorScheme={"green"} pt={3} />
+				<hr color="black" />
 				{optionType === "Single Textbox" ? (
 					<Box pt={3}>
 						<FormLabel>
@@ -90,6 +103,7 @@ const CreateQuestion = ({ id, setQuestions }) => {
 									<Input
 										key={i}
 										type={"text"}
+										borderColor={"black"}
 										value={ans}
 										onChange={(e) => {
 											setAnswer([e.target.value]);
@@ -104,6 +118,7 @@ const CreateQuestion = ({ id, setQuestions }) => {
 						<FormLabel w="70%">
 							Enter number of options
 							<Input
+								borderColor={"black"}
 								type={"number"}
 								placeholder="Enter number of options"
 								name={"numberofOption"}
@@ -112,6 +127,7 @@ const CreateQuestion = ({ id, setQuestions }) => {
 							/>
 						</FormLabel>
 						<Grid
+							mb={4}
 							templateColumns={[
 								"repeat(1, 100%)",
 								"repeat(2, 50%)",
@@ -125,6 +141,7 @@ const CreateQuestion = ({ id, setQuestions }) => {
 											Option {i + 1}
 											<Input
 												type={"text"}
+												borderColor={"black"}
 												value={opt}
 												onChange={(e) => {
 													handleOptions(e, i);
@@ -135,11 +152,12 @@ const CreateQuestion = ({ id, setQuestions }) => {
 								);
 							})}
 						</Grid>
-						<Divider colorScheme={"green"} pt={2.5} />
+						<hr color="black" size={2} />
 
 						<FormLabel w="70%" pt={3}>
 							Enter number of answers
 							<Input
+								borderColor={"black"}
 								type={"number"}
 								placeholder="Enter number of options"
 								name={"numberofAnswer"}
@@ -148,6 +166,7 @@ const CreateQuestion = ({ id, setQuestions }) => {
 							/>
 						</FormLabel>
 						<Grid
+							mb={4}
 							templateColumns={[
 								"repeat(1, 100%)",
 								"repeat(2, 50%)",
@@ -160,6 +179,7 @@ const CreateQuestion = ({ id, setQuestions }) => {
 										<FormLabel>
 											Answer {i + 1}
 											<Input
+												borderColor={"black"}
 												type={"text"}
 												value={ans}
 												onChange={(e) => {
@@ -177,6 +197,7 @@ const CreateQuestion = ({ id, setQuestions }) => {
 						<FormLabel w="70%">
 							Enter number of options
 							<Input
+								borderColor={"black"}
 								type={"number"}
 								placeholder="Enter number of options"
 								name={"numberofOption"}
@@ -198,6 +219,7 @@ const CreateQuestion = ({ id, setQuestions }) => {
 											Option {i + 1}
 											<Input
 												type={"text"}
+												borderColor={"black"}
 												value={opt}
 												key={i}
 												onChange={(e) => {
@@ -211,11 +233,12 @@ const CreateQuestion = ({ id, setQuestions }) => {
 						</Grid>
 						<Divider colorScheme={"green"} pt={2.5} />
 
-						<FormLabel pt={3}>
+						<FormLabel pt={3} mb={4}>
 							Answer
 							{answer?.map((ans, i) => {
 								return (
 									<Input
+										borderColor={"black"}
 										key={i}
 										type={"text"}
 										value={ans}
@@ -230,19 +253,29 @@ const CreateQuestion = ({ id, setQuestions }) => {
 				) : (
 					<></>
 				)}
-				<Divider colorScheme={"green"} pt={2.5} />
+				<hr color="black" />
 
-				<FormLabel w="50%" pt={3}>
-					Enter Points
-					<Input
-						type={"number"}
-						value={points}
-						onChange={(e) => setPoints(e.target.value)}
-					/>
-				</FormLabel>
-				<Button type="submit" mt={3} mb={-3}>
-					Add question
-				</Button>
+				<Flex justifyContent={"space-between"} alignItems="center">
+					<FormLabel w={["full", "150%"]} pt={3}>
+						Enter Points
+						<Input
+							borderColor={"black"}
+							type={"number"}
+							value={points}
+							onChange={(e) => setPoints(e.target.value)}
+						/>
+					</FormLabel>
+					<Button
+						type="submit"
+						variant={"solid"}
+						colorScheme="whatsapp"
+						mt={3}
+						mb={-3}
+						w="full"
+					>
+						Add question
+					</Button>
+				</Flex>
 			</form>
 		</Box>
 	);

@@ -2,15 +2,20 @@ const mongoose = require("mongoose");
 
 const surveySchema = new mongoose.Schema(
 	{
-		surveytitle: { type: String, requried: true },
+		surveyTitle: { type: String, requried: true },
+		numberofQuestion: { type: Number, required },
 		creator: { type: String, requried: true },
-		questions: {
-			type: Array({
-				type: mongoose.Schema.Types.ObjectId,
-				ref: "questions",
-				required: true,
-			}),
-		},
+		questions: [
+			{
+				question: { type: String },
+				optionType: { type: String },
+				numberofOption: { type: Number },
+				numberofAnswer: { type: Number },
+				options: [{ type: String }],
+				answer: [{ type: String }],
+				points: { type: Number },
+			},
+		],
 	},
 	{
 		versionKey: false,

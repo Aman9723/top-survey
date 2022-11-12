@@ -40,6 +40,7 @@ const CreateSurvey = () => {
 			surveyTitle: surveyTitle,
 			numberofQuestion: numberofQuestion,
 			questions: [...questions],
+			creator: "Pratik",
 		};
 		dispatch(addSurvey({ ...data }, "pratik"));
 		console.log(data);
@@ -71,13 +72,18 @@ const CreateSurvey = () => {
 					);
 				})}
 			</Flex>
-			<Button
-				onClick={() => {
-					handleSubmit();
-				}}
-			>
-				Add Survey
-			</Button>
+			<Flex justifyContent={"center"}>
+				<Button
+					onClick={() => {
+						handleSubmit();
+					}}
+					variant={"solid"}
+					colorScheme="whatsapp"
+					w="full"
+				>
+					Add Survey
+				</Button>
+			</Flex>
 		</Box>
 	);
 };
