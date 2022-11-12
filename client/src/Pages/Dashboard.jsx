@@ -14,9 +14,12 @@ import React from "react";
 import { Checkbox } from "@chakra-ui/react";
 import Navbar2 from "../Components/Navbar2/Navbar2";
 import styles from "./Dashboard.module.css";
+import { useSelector } from "react-redux";
 import Footer from "../Components/Footer/Footer";
 
 const Dashborad = () => {
+	const { token } = useSelector((store) => store.login);
+	const array = token.split("_");
 	return (
 		<div>
 			<Navbar2 />
@@ -27,7 +30,7 @@ const Dashborad = () => {
 					_hover={{ outline: "none" }}
 					color={"#007FAA"}
 				>
-					{/* <Text>{username}!</Text> */}
+					{array[1]}
 				</Link>
 			</Box>
 			<Box>

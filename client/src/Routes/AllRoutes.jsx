@@ -12,6 +12,7 @@ import Homepage from "./../Pages/Homepage";
 // import SignupPassword from "../Components/SignupPassword";
 import Dashboard from "../Pages/Dashboard";
 import RequireAuth from "../Hoc/RequireAuth";
+import AllSurverys from "../Components/AllSurverys";
 
 const AllRoutes = () => {
 	return (
@@ -49,6 +50,14 @@ const AllRoutes = () => {
 					element={
 						<RequireAuth>
 							<DisplaySurvey />
+						</RequireAuth>
+					}
+				/>
+				<Route
+					path="/allsurvey"
+					element={
+						<RequireAuth>
+							<AllSurverys />
 						</RequireAuth>
 					}
 				/>
