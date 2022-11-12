@@ -39,13 +39,13 @@ const ForgotEmail = () => {
     // if present -> take the user to fill code and new password
     // else -> give error email doesn't exist
 
-    const handleNext = (e) => {
+    const handleNext = () => {
         dispatch(sendOtp(email));
     };
 
     if (success) {
         dispatch({ type: FORGOT_NOT_SUCCESS });
-        return <Navigate to="/forgot/password" />;
+        return <Navigate to="/forgot/changePassword" />;
     }
 
     return (

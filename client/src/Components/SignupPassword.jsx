@@ -10,7 +10,6 @@ import {
     Image,
     Input,
     Link,
-    position,
     Text,
     useToast,
 } from '@chakra-ui/react';
