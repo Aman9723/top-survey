@@ -1,12 +1,26 @@
-import { Box, Button, Flex, FormLabel, Input } from "@chakra-ui/react";
+import {
+	Box,
+	Button,
+	Flex,
+	FormLabel,
+	Input,
+	Menu,
+	MenuButton,
+	MenuItem,
+	MenuList,
+} from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addSurvey } from "../Redux/Survey/survey.actions";
 import CreateQuestion from "./CreateQuestion";
-import Navbar2 from "./Navbar2/Navbar2";
+import { ChevronDownIcon } from "@chakra-ui/icons";
+import { logout } from "../Redux/Login/login.actions";
+import { Link, Navigate } from "react-router-dom";
+
 const CreateSurvey = () => {
 	const dispatch = useDispatch();
-
+	const { token } = useSelector((store) => store.login);
+	const array = token.split("_");
 	const [surveyTitle, setSurveyTitle] = useState("");
 	const [numberofQuestion, setnumberofQuestion] = useState(1);
 	const [questions, setQuestions] = useState([]);
@@ -27,15 +41,20 @@ const CreateSurvey = () => {
 			surveyTitle: surveyTitle,
 			numberofQuestion: numberofQuestion,
 			questions: [...questions],
-			creator: "Pratik",
+			creator: array[1],
 		};
 		dispatch(addSurvey({ ...data }));
+		return <Navigate to="/dashboard" />;
 	};
+
 	return (
 		<div>
-			<Navbar2 />
 			<Box p={5}>
-				<FormLabel>
+				<Link to="/dashboard">
+					<Button> Back</Button>
+				</Link>
+
+				<FormLabel mt={3}>
 					Survey Title
 					<Input
 						type={"text"}
@@ -65,16 +84,18 @@ const CreateSurvey = () => {
 					})}
 				</Flex>
 				<Flex justifyContent={"center"}>
-					<Button
-						onClick={() => {
-							handleSubmit();
-						}}
-						variant={"solid"}
-						colorScheme="whatsapp"
-						w="full"
-					>
-						Add Survey
-					</Button>
+					<Link to="/dashboard">
+						<Button
+							onClick={() => {
+								handleSubmit();
+							}}
+							variant={"solid"}
+							colorScheme="whatsapp"
+							w="full"
+						>
+							Add Survey
+						</Button>
+					</Link>
 				</Flex>
 			</Box>
 		</div>

@@ -13,6 +13,7 @@ import Homepage from "./../Pages/Homepage";
 import Dashboard from "../Pages/Dashboard";
 import RequireAuth from "../Hoc/RequireAuth";
 import AllSurverys from "../Components/AllSurverys";
+import MySurveys from "../Components/MySurveys";
 
 const AllRoutes = () => {
 	return (
@@ -58,6 +59,14 @@ const AllRoutes = () => {
 					element={
 						<RequireAuth>
 							<AllSurverys />
+						</RequireAuth>
+					}
+				/>
+				<Route
+					path="/mysurvey"
+					element={
+						<RequireAuth>
+							<MySurveys />
 						</RequireAuth>
 					}
 				/>

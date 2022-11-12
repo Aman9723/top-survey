@@ -16,7 +16,7 @@ export const surveyReducer = (state = initState, { type, payload }) => {
 			return { ...state, survey: [...state.survey, payload] };
 		}
 		case DELETE_SURVEY: {
-			let id = payload.id;
+			let id = payload;
 			const filterSurvey = state.survey.filter((ele) => ele.id !== id);
 			return { ...state, survey: filterSurvey };
 		}

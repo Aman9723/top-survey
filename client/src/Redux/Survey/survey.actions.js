@@ -30,10 +30,15 @@ export const addSurvey = (payload) => async (dispatch) => {
 	let data = res.data;
 	console.log("success", data);
 };
-export const deleteSurvey = (payload) => async (dispatch) => {
-	dispatch({ type: DELETE_SURVEY });
-	return axios.delete(`${process.env.REACT_APP_FETCH_URL}survey`, payload);
-};
+export const deleteSurvey =
+	({ id }) =>
+	async (dispatch) => {
+		dispatch({ type: DELETE_SURVEY });
+		let res = await axios.delete(
+			`${process.env.REACT_APP_FETCH_URL}survey/${id}`
+		);
+		return await res.data;
+	};
 export const updateSurvey = (payload) => async (dispatch) => {
 	dispatch({ type: UPDATE_SURVEY });
 };
