@@ -17,6 +17,7 @@ function handleSignout(){
         <Box className={styles.Navbar2box}>
            <Flex
             className={styles.Nav_first}
+            //  border = {"1px solid white"} 
           >
           <Link to="/homepage"> 
           <Image height={'40px'} src={logo}></Image>
@@ -61,6 +62,7 @@ function Grid() {
             <Image height={'25px'} src='https://cdn.smassets.net/assets/dashweb/smlib.globaltemplates/13.0.0/assets/ProductsIcon.svg'></Image>
             </Link>
         </Button>
+
         <Drawer
           isOpen={isOpen}
           placement='right'
@@ -71,7 +73,7 @@ function Grid() {
           <DrawerContent background={"white"} overflowY={'scroll'}>
             <DrawerCloseButton background={"white"}  border={"none"}/>
           <Text className={styles.drawerPro}>Products</Text>
-          <ul className={styles.ul_style}>
+          <ul >
            <li>
             <Link>
             <Text>Enterprise</Text>
