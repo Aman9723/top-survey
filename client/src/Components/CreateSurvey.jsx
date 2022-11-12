@@ -35,15 +35,14 @@ const CreateSurvey = () => {
 		setQuestions(ques);
 	}, [numberofQuestion]);
 
-	const handleSubmit = () => {
+	const handleSubmit = async () => {
 		const data = {
 			surveyTitle: surveyTitle,
 			numberofQuestion: numberofQuestion,
 			questions: [...questions],
 			creator: "Pratik",
 		};
-		dispatch(addSurvey({ ...data }, "pratik"));
-		console.log(data);
+		dispatch(addSurvey({ ...data }));
 	};
 	return (
 		<Box p={5}>
