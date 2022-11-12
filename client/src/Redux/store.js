@@ -1,5 +1,5 @@
-import { legacy_createStore } from 'redux';
+// import { legacy_createStore } from 'redux';
 
-const store = legacy_createStore();
+// const store = legacy_createStore();
 
-export default store;
+// export default store;
