@@ -3,7 +3,7 @@ import './App.css';
 import Login from './Components/Login';
 import SignupEmail from './Components/SignupEmail';
 import SignupPassword from './Components/SignupPassword';
-import Dashboard from './Pages/Dashboard';
+// import Dashboard  from "./Pages/Dashboard"
 import RequireEmail from './Hoc/RequireEmail';
 import CreateSurvey from "./Components/CreateSurvey";
 
