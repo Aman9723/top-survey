@@ -6,6 +6,7 @@ import {
 	AccordionPanel,
 	Box,
 	Button,
+	Center,
 	Image,
 	Link,
 	Text,
@@ -15,7 +16,7 @@ import { Checkbox } from "@chakra-ui/react";
 import Navbar2 from "../Components/Navbar2/Navbar2";
 import styles from "./Dashboard.module.css";
 import { useSelector } from "react-redux";
-import Footer from "../Components/Footer/Footer";
+import Footer from "./Footer";
 
 const Dashborad = () => {
 	const { token } = useSelector((store) => store.login);
@@ -113,17 +114,19 @@ const Dashborad = () => {
 					<Text className={styles.get_start}>
 						Let's get started & create your first survey!
 					</Text>
-					<Link href="/survey">
-						<Button
-							border={"none"}
-							_hover={"none"}
-							backgroundColor={"#00b159 "}
-							padding={"10px"}
-							className={styles.create_but}
-						>
-							CREATE SURVEY
-						</Button>
-					</Link>
+					<Center p={7}>
+						<Link href="/survey">
+							<Button
+								border={"none"}
+								_hover={"none"}
+								backgroundColor={"#00b159 "}
+								padding={"10px"}
+								className={styles.create_but}
+							>
+								CREATE SURVEY
+							</Button>
+						</Link>
+					</Center>
 				</Box>
 				<Box textAlign={"left"} marginLeft={"20%"}>
 					<Text fontSize={"20px"}>Survey Examples</Text>

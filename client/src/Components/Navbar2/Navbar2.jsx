@@ -53,9 +53,11 @@ const Navbar2 = () => {
 							All surveys
 						</Button>
 					</Link>
-					<Button colorScheme={"whatsapp"} variant="link">
-						Plans & pricing
-					</Button>
+					<Link href="/plans&pricing">
+						<Button colorScheme={"whatsapp"} variant="link">
+							Plans & pricing
+						</Button>
+					</Link>
 				</Flex>
 				<Box className={styles.Nav_Second}>
 					<Button colorScheme={"#fdd116"}>Upgrade</Button>
