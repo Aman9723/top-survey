@@ -1,7 +1,6 @@
 import {
     FORGOT_EMAIL,
     FORGOT_PASSWORD,
-    FORGOT_CODE,
     FORGOT_REQUEST,
     FORGOT_ERROR,
     FORGOT_SUCCESS,
@@ -12,7 +11,6 @@ const initState = {
     email: '',
     isEmailValid: false,
     newPassword: '',
-    code: '',
     isPasswordValid: false,
     loading: false,
     error: false,
@@ -38,12 +36,6 @@ const forgotReducer = (state = initState, { type, payload }) => {
                 ...state,
                 newPassword: payload,
                 isPasswordValid: payload.length >= 8,
-            };
-        }
-        case FORGOT_CODE: {
-            return {
-                ...state,
-                code: String(payload),
             };
         }
         case FORGOT_REQUEST: {

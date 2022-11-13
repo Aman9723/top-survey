@@ -1,7 +1,6 @@
 import {
     FORGOT_EMAIL,
     FORGOT_PASSWORD,
-    FORGOT_CODE,
     FORGOT_REQUEST,
     FORGOT_ERROR,
     FORGOT_SUCCESS,
@@ -17,16 +16,15 @@ const forgotPassword = (password) => {
     return { type: FORGOT_PASSWORD, payload: password };
 };
 
-const forgotCode = (code) => {
-    return { type: FORGOT_CODE, payload: code };
-};
-
 const sendOtp = (email) => async (dispatch) => {
     dispatch({ type: FORGOT_REQUEST });
     try {
-        let res = await axios.post('http://localhost:8080/forgot/setOtp', {
-            email,
-        });
+        let res = await axios.post(
+            `${process.env.REACT_APP_FETCH_URL}forgot/sendOtp`,
+            {
+                email,
+            }
+        );
         res = res.data;
         if (res === 'Enter code') dispatch({ type: FORGOT_SUCCESS });
         else dispatch({ type: FORGOT_ERROR, payload: res });
@@ -38,8 +36,8 @@ const sendOtp = (email) => async (dispatch) => {
 const changePassword = (data) => async (dispatch) => {
     dispatch({ type: FORGOT_REQUEST });
     try {
-        let res = await axios.patch(
-            'http://localhost:8080/forgot/changePassword',
+        let res = await axios.post(
+            `${process.env.REACT_APP_FETCH_URL}forgot/changePassword`,
             data
         );
         res = res.data;
@@ -50,4 +48,4 @@ const changePassword = (data) => async (dispatch) => {
     }
 };
 
-export { forgotEmail, forgotPassword, forgotCode, sendOtp, changePassword };
+export { forgotEmail, forgotPassword, sendOtp, changePassword };

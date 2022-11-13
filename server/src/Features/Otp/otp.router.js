@@ -61,7 +61,7 @@ app.post('/sendOtp', async (req, res) => {
     }
 });
 
-app.patch('/changePassword', async (req, res) => {
+app.post('/changePassword', async (req, res) => {
     const { email, code, newPassword } = req.body;
     try {
         const otp = await Otps.findOne({ email, code });
@@ -78,7 +78,7 @@ app.patch('/changePassword', async (req, res) => {
                 res.send('password changed');
             }
         } else {
-            res.status(400).send('Invalid code.');
+            res.send('Invalid code.');
         }
     } catch (e) {
         res.status(400).send(e.message);
