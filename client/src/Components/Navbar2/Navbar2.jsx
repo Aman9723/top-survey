@@ -38,12 +38,16 @@ const Navbar2 = () => {
 					<Link href="/dashboard">
 						<Image height={"40px"} src={logo}></Image>
 					</Link>
-					<Button colorScheme={"whatsapp"} variant="link">
-						Dashboard
-					</Button>
-					<Button colorScheme={"whatsapp"} variant="link">
-						My surveys
-					</Button>
+					<Link href="/dashboard">
+						<Button colorScheme={"whatsapp"} variant="link">
+							Dashboard
+						</Button>
+					</Link>
+					<Link href="/mysurvey">
+						<Button colorScheme={"whatsapp"} variant="link">
+							My surveys
+						</Button>
+					</Link>
 					<Link href="/allsurvey">
 						<Button colorScheme={"whatsapp"} variant="link">
 							All surveys
