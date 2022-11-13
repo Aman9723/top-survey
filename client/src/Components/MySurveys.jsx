@@ -2,7 +2,8 @@ import { Box, Button, Flex, Heading, Link, Text } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteSurvey, getSurvey } from "../Redux/Survey/survey.actions";
-import Footer from "./Footer/Footer";
+import Footer from "../Pages/Footer";
+
 import Navbar2 from "./Navbar2/Navbar2";
 
 const MySurveys = () => {

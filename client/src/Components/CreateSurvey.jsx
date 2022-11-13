@@ -1,20 +1,8 @@
-import {
-	Box,
-	Button,
-	Flex,
-	FormLabel,
-	Input,
-	Menu,
-	MenuButton,
-	MenuItem,
-	MenuList,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, FormLabel, Input } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addSurvey } from "../Redux/Survey/survey.actions";
 import CreateQuestion from "./CreateQuestion";
-import { ChevronDownIcon } from "@chakra-ui/icons";
-import { logout } from "../Redux/Login/login.actions";
 import { Link, Navigate } from "react-router-dom";
 
 const CreateSurvey = () => {
@@ -50,10 +38,14 @@ const CreateSurvey = () => {
 	return (
 		<div>
 			<Box p={5}>
-				<Link to="/dashboard">
-					<Button> Back</Button>
-				</Link>
-
+				<Flex justifyContent={"space-between"} alignItems={"center"} mb={5}>
+					<Link to="/dashboard">
+						<Button> Back</Button>
+					</Link>
+					<Link>
+						<Button variant={"none"}> {array[1]}</Button>
+					</Link>
+				</Flex>
 				<FormLabel mt={3}>
 					Survey Title
 					<Input
