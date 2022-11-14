@@ -6,7 +6,7 @@
 
 Top Survey offers a variety of very useful features with its free version of the application, which makes it more appealing for less frequent users. Its survey-building features are very intuitive, and allow you to create new and manage existing surveys easily.
 
-<a href="https://topsurvey.vercel.app/">Want to see live preview >></a>
+#### <a href="https://topsurvey.vercel.app/">Want to see live preview >></a>
 
 ### Pages
 
@@ -22,6 +22,8 @@ Top Survey offers a variety of very useful features with its free version of the
 
 - Landing page for Top Survey
 - Login and Signup for user account
+- Forget password functionality
+- Password stored in hashed form (user privacy) 
 - Dashboard user specific
 - Display all surveys and surveys created by user
 - Create surveys and view them based on user
@@ -77,7 +79,8 @@ Top Survey offers a variety of very useful features with its free version of the
 ## Install
 
 To install all the dependences of the project, run the following command:
-
+    
+    git clone https://github.com/Aman9723/smooth-dock-1057.git
     cd server
     npm install
     cd ../
