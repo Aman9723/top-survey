@@ -75,7 +75,7 @@ const CreateSurvey = () => {
 						);
 					})}
 				</Flex>
-				<Flex justifyContent={"center"}>
+				<Flex justifyContent={"center"} w="full">
 					<Link to="/dashboard">
 						<Button
 							onClick={() => {

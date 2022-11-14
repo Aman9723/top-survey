@@ -86,7 +86,11 @@ const CreateQuestion = ({ id, setQuestions }) => {
 						value={optionType}
 						name={"optionType"}
 						borderColor={"black"}
-						onChange={(e) => setOptionType(e.target.value)}
+						onChange={(e) => {
+							setOptionType(e.target.value);
+							setnumberofOption(2);
+							setnumberofAnswer(1);
+						}}
 					>
 						<option value="Checkbox">Checkbox</option>
 						<option value="Radio">Radio</option>
