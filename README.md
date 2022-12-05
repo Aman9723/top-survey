@@ -1,9 +1,5 @@
 # Top Survey
 
-## Project Details
-
-### `Project Code: smooth-dock-1057`
-
 Top Survey offers a variety of very useful features with its free version of the application, which makes it more appealing for less frequent users. Its survey-building features are very intuitive, and allow you to create new and manage existing surveys easily.
 
 #### <a href="https://topsurvey.vercel.app/">Want to see live preview >></a>
