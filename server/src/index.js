@@ -15,6 +15,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.get('/', (req, res) => {res.send('Everything good 👍')});
 app.use('/survey/question', questionRoute);
 app.use('/survey', surveyRoute);
 app.use('/signup', signupRoute);
