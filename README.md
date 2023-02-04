@@ -77,6 +77,7 @@ Top Survey offers a variety of very useful features with its free version of the
 To install all the dependences of the project, run the following command:
     
     git clone https://github.com/Aman9723/top-survey.git
+    cd .\top-survey\
     cd server
     npm install
     cd ../
